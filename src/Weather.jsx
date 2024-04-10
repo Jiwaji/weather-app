@@ -21,7 +21,7 @@ export default function () {
   const OWM_API_KEY = process.env.REACT_APP_OPEN_WEATHER_API_KEY;
   const UNSPLASH_KEY = process.env.REACT_APP_UNSPLASH_API_KEY;
   const WEATHER_URL = `https://api.openweathermap.org/data/2.5/weather`
-  const LOCATION_URL = `http://api.openweathermap.org/geo/1.0/direct`
+  const LOCATION_URL = `https://api.openweathermap.org/geo/1.0/direct`
   const LOCATION_IMAGE_URL = `https://api.unsplash.com/search/photos`
   const today = new Date();
   const days = {
