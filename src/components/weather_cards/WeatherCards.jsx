@@ -35,7 +35,31 @@ export default function WeatherCards() {
                 high: 15,
                 low: -3
             }
-        }
+        },
+        {
+            name: "Thu",
+            icon: weatherIcon,
+            temp: {
+                high: 15,
+                low: -3
+            }
+        },
+        {
+            name: "Fri",
+            icon: weatherIcon,
+            temp: {
+                high: 15,
+                low: -3
+            }
+        },
+        {
+            name: "Sat",
+            icon: weatherIcon,
+            temp: {
+                high: 15,
+                low: -3
+            }
+        },
     ]
     return (
         <div className="cards">
