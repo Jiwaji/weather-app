@@ -1,4 +1,4 @@
-import './ProgressBar.css'
+import "./ProgressBar.css"
 
 export default function ProgressBar() {
     return (
@@ -6,7 +6,7 @@ export default function ProgressBar() {
             <div className="barOverflow">
                 <div className="bar"></div>
             </div>
-            <span>10</span>%
+            <span>10</span>
         </div>
     )
 }

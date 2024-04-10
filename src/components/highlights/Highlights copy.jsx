@@ -1,19 +1,43 @@
-import weatherIcon from './assets/weather.svg';
-import locationIcon from './assets/location-dot.svg';
+import weatherIcon from '../assets/weather.svg';
+import locationIcon from '../../assets/location-dot.svg';
 
-import ProgressBar from './ProgressBar';
-import Slider from './Slider';
-import HighlightCard from './HighlightCard';
+import ProgressBar from '../progress_bar/ProgressBar';
+import Slider from '../slider/Slider';
+import HighlightCard from './HIghlightCard/HighlightCard';
+import HighlightCard2 from './HIghlightCard/HighlightCard2';
 
 export default function Hightlights() {
     return (
         <div className="highlights">
             <h5>Today Highlights</h5>
             <div className="highlights-cards">
-                <HighlightCard>
+                <HighlightCard title="UV Index">
+                    <ProgressBar/>
+                </HighlightCard>
+                {/* <HighlightCard title="UV Index">
                     <ProgressBar />
                 </HighlightCard>
-                <div className="highlight-card">
+                <HighlightCard2 title="Wind Speed" value={7.7} unit="km/h">
+                </HighlightCard2>
+                <HighlightCard title="Sunrise & Sunset">
+                    <div className='sns'>
+                        <div className='sns-icon'><img src={weatherIcon} alt="sunrise" /></div>
+                        <div className='sns-time'>
+                            <p>6:35 AM</p>
+                            <p className='sns-diff'>-1m 46s</p>
+                        </div>
+                    </div>
+                    <div className='sns'>
+                        <div className='sns-icon'><img src={weatherIcon} alt="sunrise" /></div>
+                        <div className='sns-time'>
+                            <p>6:35 AM</p>
+                            <p className='sns-diff'>-1m 46s</p>
+                        </div>
+                    </div>
+                </HighlightCard>
+                <HighlightCard2 title="Humidity" value="12" unit="%" footer="Normal &#128077;">
+                </HighlightCard2> */}
+                {/* <div className="highlight-card">
                     <p className="highlight-card-title">Wind Speed</p>
                     <div className="highlight-card-content wind">
                         <div className='wind-speed'>
@@ -21,8 +45,8 @@ export default function Hightlights() {
                         </div>
                         <div className='direction-icon'><img src={locationIcon} alt="direction" /> WSW</div>
                     </div>
-                </div>
-                <div className="highlight-card">
+                </div> */}
+                {/* <div className="highlight-card">
                     <p className="highlight-card-title">Sunrise & Sunset</p>
                     <div className="highlight-card-content sns-highlight">
                         <div className='sns'>
@@ -77,7 +101,7 @@ export default function Hightlights() {
                         </div>
                         <div className='hightlight-card-footer'>Average &#128078;</div>
                     </div>
-                </div>
+                </div> */}
             </div>
         </div >
     )

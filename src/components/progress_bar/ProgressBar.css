@@ -3,6 +3,9 @@
     margin: 4px;
     float: left;
     text-align: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
 }
 
 .barOverflow {
