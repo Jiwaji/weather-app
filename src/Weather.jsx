@@ -20,7 +20,6 @@ export default function () {
 
   const OWM_API_KEY = process.env.REACT_APP_OPEN_WEATHER_API_KEY;
   const UNSPLASH_KEY = process.env.REACT_APP_UNSPLASH_API_KEY;
-  console.log(OWM_API_KEY, UNSPLASH_KEY)
   const WEATHER_URL = `https://api.openweathermap.org/data/2.5/weather`
   const LOCATION_URL = `http://api.openweathermap.org/geo/1.0/direct`
   const LOCATION_IMAGE_URL = `https://api.unsplash.com/search/photos`
@@ -59,7 +58,6 @@ export default function () {
       const url = `${WEATHER_URL}?lat=${lat}&lon=${lon}&units=${unit}&appid=${OWM_API_KEY}`;
       const res = await fetch(url);
       const data = await res.json();
-      console.log(data)
       setWeather(data)
     } catch (error) {
       console.log(error)
@@ -84,13 +82,12 @@ export default function () {
 
   async function getLocationImage() {
     try {
-      const url = `${LOCATION_IMAGE_URL}?query=${location}&page=1&client_id=F_nypuWxwBsr6WBO6HltWRGFJo4Q9DqJA0PyrjfAWd4`;
+      const url = `${LOCATION_IMAGE_URL}?query=${location}&page=1&client_id=${UNSPLASH_KEY}`;
       const res = await fetch(url);
       const data = await res.json();
       console.log(data)
       if(data.results.length) {
         setLocationImage(data.results[0].urls.full)
-        // console.log(data[0].urls.full)
       }
     } catch(error) {
       console.log(error)
@@ -105,7 +102,6 @@ export default function () {
   }, [location]);
 
   useEffect(() => {
-    console.log(unit)
     getWeatherBySearchLocation()
   }, [latLong, unit])
 
