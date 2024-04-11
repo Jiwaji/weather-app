@@ -1,17 +1,17 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
-import weatherIcon from './assets/weather.svg';
+// import weatherIcon from './assets/weather.svg';
 import searchIcon from './assets/search.svg';
 import detectIcon from './assets/detect.svg';
 import userProfile from './assets/profile.jpg';
 
 import WeatherCards from './components/weather_cards/WeatherCards';
 import Hightlights from './components/highlights/Highlights';
-import AutoComplete from './components/autocomplete/AutoComplete';
+// import AutoComplete from './components/autocomplete/AutoComplete';
 
 import './Weather.css';
 
-export default function () {
+export default function Weather() {
   const [weather, setWeather] = useState(null);
   const [location, setLocation] = useState("mumbai");
   const [latLong, setLatLong] = useState({ lat: 44.34, lon: 10.99 })
@@ -48,12 +48,7 @@ export default function () {
     });
   }
 
-  async function getWeatherBySearchLocation() {
-    const { lat, lon } = latLong;
-    await getWeather(lat, lon)
-  }
-
-  async function getWeather(lat, lon) {
+  const getWeather = useCallback(async (lat, lon) => {
     try {
       const url = `${WEATHER_URL}?lat=${lat}&lon=${lon}&units=${unit}&appid=${OWM_API_KEY}`;
       const res = await fetch(url);
@@ -62,9 +57,14 @@ export default function () {
     } catch (error) {
       console.log(error)
     }
-  }
+  }, [WEATHER_URL, OWM_API_KEY, unit])
 
-  async function getLatLong() {
+  const getWeatherBySearchLocation = useCallback(async () => {
+    const { lat, lon } = latLong;
+    await getWeather(lat, lon)
+  }, [getWeather, latLong])
+
+  const getLatLong = useCallback(async () => {
     try {
       const url = `${LOCATION_URL}?q=${location}&limit=10&appid=${OWM_API_KEY}`;
       const res = await fetch(url);
@@ -78,9 +78,9 @@ export default function () {
     } catch (error) {
       console.log(error)
     }
-  }
+  } , [LOCATION_URL, OWM_API_KEY, location])
 
-  async function getLocationImage() {
+  const getLocationImage = useCallback(async () => {
     try {
       const url = `${LOCATION_IMAGE_URL}?query=${location}&page=1&client_id=${UNSPLASH_KEY}`;
       const res = await fetch(url);
@@ -92,18 +92,18 @@ export default function () {
     } catch(error) {
       console.log(error)
     }
-  }
+  } , [LOCATION_IMAGE_URL, UNSPLASH_KEY, location])
 
   useEffect(() => {
     if (location) {
       getLatLong()
       getLocationImage()
     }
-  }, [location]);
+  }, [location, getLatLong, getLocationImage]);
 
   useEffect(() => {
     getWeatherBySearchLocation()
-  }, [latLong, unit])
+  }, [latLong, unit, getWeatherBySearchLocation])
 
   return (
     <div className="main">
@@ -155,8 +155,8 @@ export default function () {
         <div className="right-top">
           <div className="header">
             <div className="tab">
-              <a href='#'>Today</a>
-              <a href='#' className='active'>Week</a>
+              <button>Today</button>
+              <button className='active'>Week</button>
             </div>
             <div className="unit">
               <button className={unit === "metric" && "active"} onClick={() => setUnit("metric")}>&#8451;</button>

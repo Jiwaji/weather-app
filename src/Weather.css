@@ -203,8 +203,13 @@ hr {
   flex-grow: 1;
 }
 
-.right-top .tab a.active {
+.right-top .tab button {
+  border: none;
+}
+
+.right-top .tab button.active {
   font-weight: 600;
+  border-bottom: 1px solid black;
 }
 
 .right-top .unit {
